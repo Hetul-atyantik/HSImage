@@ -12,6 +12,7 @@ class HSImageViewModel: ObservableObject {
         case loading
         case nameIntials(nameInitials: String)
         case localImage(path: String?)
+        case animated(url: URL)
         case webImage(url: URL)
         case failure
     }
@@ -48,12 +49,12 @@ extension HSImageViewModel {
         case .url:
             if let imgString = imageURL?.removingPercentEncoding?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let imgURL = URL(string: imgString) {
                 if FileManager.default.fileExists(atPath: imgURL.path) {
-//                    if imgURL.pathExtension.lowercased().contains("gif") {
-//                        currentImageState = .animated(url: URL(fileURLWithPath: imgURL.path))
-//                    }
-//                    else {
+                    if imgURL.pathExtension.lowercased().contains("gif") {
+                        currentImageState = .animated(url: URL(fileURLWithPath: imgURL.path))
+                    }
+                    else {
                         currentImageState = .localImage(path: imgURL.path)
-//                    }
+                    }
                 }
                 else {
                     currentImageState = .webImage(url: imgURL)

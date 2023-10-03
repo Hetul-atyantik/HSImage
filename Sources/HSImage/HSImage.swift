@@ -52,9 +52,9 @@ public struct HSImage: View {
         case .nameIntials(let nameInitials):
             makeInitialsView(nameInitials)
             
-//        case .animated(let data):
-//            makeLocalAnimatedImageView(data)
-//                .manageZoom(isZoomAllowed: isZoomAllowed)
+        case .animated(let data):
+            makeLocalAnimatedImageView(data)
+                .manageZoom(isZoomAllowed: isZoomAllowed)
             
         case .localImage(let path):
             if let imagePath = path, let img = UIImage(contentsOfFile: imagePath) {
@@ -116,12 +116,12 @@ extension HSImage {
     }
     
     /// make Animated Image UI
-//    @ViewBuilder private func makeLocalAnimatedImageView(_ url: URL)->some View {
-//        GIFView(url: url)
-//            .frame(width: size.width, height: size.height, alignment: .center)
-//            .scaledToFill()
-//            .clipped()
-//    }
+    @ViewBuilder private func makeLocalAnimatedImageView(_ url: URL)->some View {
+        GIFView(url: url)
+            .frame(width: size.width, height: size.height, alignment: .center)
+            .scaledToFill()
+            .clipped()
+    }
     
     /// make Loading UI
     @ViewBuilder private func makeLocalImageView(_ image: UIImage)->some View {
